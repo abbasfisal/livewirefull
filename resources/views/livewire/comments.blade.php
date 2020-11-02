@@ -1,11 +1,14 @@
 <div class="col-lg  border ">
     <div class="col-lg-12">
-        <div class="form-inline justify-content-center mt-5">
+        <form class="form-inline justify-content-center mt-5" wire:submit.prevent="addComment">
             <div class="form-group mx-sm-3 mb-2">
-                <input type="text" class="form-control" id="inputPassword2" placeholder="Enter Your Mind Text">
+                <input type="text" class="form-control"
+                       wire:model="newComment"
+                        placeholder="Enter Your Mind Text">
             </div>
-            <button type="submit" class="btn btn-primary mb-2" wire:click="addComment">Add Your Mind text</button>
-        </div>
+            <button type="submit" class="btn btn-primary mb-2">Add Your Mind text</button>
+        </form>
+
         <br/>
         <div class="col-lg-6 justify-content-center">
             @foreach($comments as $comment)
