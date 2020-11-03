@@ -13,9 +13,9 @@
         <div class="col-lg-6 justify-content-center">
             @foreach($comments as $comment)
                 <div class="card-body shadow form justify-content-center  ">
-                    <label class="text-info text-dark font-weight-bolder">{{$comment['creator']}}</label> |
-                    <label class="text-primary">{{$comment['created_at']}}</label>
-                    <p>{{$comment['body']}}</p>
+                    <label class="text-info text-dark font-weight-bolder">{{$comment->creator->name}}</label> |
+                    <label class="text-primary">{{$comment->created_at->diffForHumans()}}</label>
+                    <p>{{$comment->body}}</p>
                 </div>
             @endforeach
         </div>

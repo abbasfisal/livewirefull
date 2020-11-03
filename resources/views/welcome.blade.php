@@ -14,6 +14,6 @@
 </head>
 <body>
 
-    @livewire('comments')
+   <livewire:comments  />
 </body>
 </html>
