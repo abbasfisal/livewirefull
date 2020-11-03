@@ -25,6 +25,7 @@ class Comments extends Component
         $comment->delete();
 
         $this->comments = $this->comments->except($commentId);
+        session()->flash('message','Comment Successfully Removed ');
     }
     public function addComment()
     {
@@ -33,6 +34,7 @@ class Comments extends Component
         $this->comments->prepend(Comment::create(['body' => $this->newComment, 'user_id' => '1']));
 
         $this->newComment = '';
+        session()->flash('message','comment added successfully :)');
     }
 
 
