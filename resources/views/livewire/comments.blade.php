@@ -36,6 +36,12 @@
                     <p>{{$comment->body}}</p>
                 </div>
             @endforeach
+
+
+
         </div>
+
     </div>
+    {{$comments->links()}}
+
 </div>
