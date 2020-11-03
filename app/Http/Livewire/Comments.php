@@ -12,6 +12,8 @@ use phpDocumentor\Reflection\Types\This;
 class Comments extends Component
 {
     use withPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public $newComment;
     //public $comments;
 

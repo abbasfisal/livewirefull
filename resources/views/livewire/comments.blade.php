@@ -38,10 +38,14 @@
             @endforeach
 
 
+            <div class=" mt-2 d-flex justify-content-center">
+                <div class="">
 
+                    {{$comments->links()}}
+                </div>
+            </div>
         </div>
 
     </div>
-    {{$comments->links()}}
 
 </div>
