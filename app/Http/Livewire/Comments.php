@@ -11,21 +11,36 @@ use phpDocumentor\Reflection\Types\This;
 class Comments extends Component
 {
     public $newComment;
-    public $comments ;
+    public $comments;
 
+    public function updated($field)
+    {
+        //realtime validation
+        $this->validateOnly($field, ['newComment' => 'required|min:10']);
+    }
+
+    public function remove($commentId)
+    {
+        $comment= Comment::find($commentId);
+        $comment->delete();
+
+        $this->comments = $this->comments->except($commentId);
+    }
     public function addComment()
     {
-      if($this->newComment=='')
-          return ;
-      $this->comments->prepend(Comment::create(['body'=>$this->newComment , 'user_id'=>'1']));
+        $this->validate(['newComment' => 'required']);
 
-      $this->newComment='';
+        $this->comments->prepend(Comment::create(['body' => $this->newComment, 'user_id' => '1']));
+
+        $this->newComment = '';
     }
+
+
 
     public function mount()
     {
 
-        $this->comments=Comment::latest()->get();
+        $this->comments = Comment::latest()->get();
     }
 
     public function render()
