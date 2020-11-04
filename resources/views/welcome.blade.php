@@ -13,7 +13,13 @@
     <title>Live wire</title>
 </head>
 <body>
-
-   <livewire:comments  />
+<div class="row  col-12 text-center m-5">
+    <div class="col border">
+        <livewire:tickets/>
+    </div>
+    <div class="col mr-5">
+        <livewire:comments/>
+    </div>
+</div>
 </body>
 </html>

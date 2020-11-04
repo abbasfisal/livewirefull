@@ -1,5 +1,10 @@
 <div class="col-lg  border ">
     <div class="col-lg-12">
+        <section class="justify-content-center d-flex mt-5">
+            <input type="file" id="image" wire:change="image">
+            <br/>
+            {{$image}}
+        </section>
         <form class="form-inline justify-content-center mt-5" wire:submit.prevent="addComment">
 
             @error('newComment')

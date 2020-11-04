@@ -6,16 +6,31 @@ use App\Models\Comment;
 use Illuminate\Support\Carbon;
 use Livewire\Component;
 use Faker\Factory;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use phpDocumentor\Reflection\Types\This;
 
 class Comments extends Component
 {
     use withPagination;
+    use WithFileUploads;
     protected $paginationTheme = 'bootstrap';
+    protected $listeners=[
+        'ticketSelected'
+    ];
+
+    public function ticketSelected($ticketId)
+    {
+        $this->ticketId  = $ticketId;
+    }
 
     public $newComment;
+    public $image;
     //public $comments;
+    /**
+     * @var mixed
+     */
+    public $ticketId=1;
 
     public function updated($field)
     {
@@ -35,7 +50,12 @@ class Comments extends Component
     {
         $this->validate(['newComment' => 'required']);
 
-        Comment::create(['body'=>$this->newComment,'user_id'=>'1']);
+        Comment::create([
+            'body'=>$this->newComment,
+            'user_id'=>'1',
+            'support_tickets_id'=>$this->ticketId
+
+        ]);
         //$this->comments->prepend(Comment::create(['body' => $this->newComment, 'user_id' => '1']));
 
         $this->newComment = '';
@@ -47,13 +67,14 @@ class Comments extends Component
    /* public function mount()
     {
 
-        $this->comments = Comment::latest()->get();
+        $this->comments = Commenst::latest()->get();
     }*/
 
     public function render()
     {
         return view('livewire.comments',[
-            'comments'=>Comment::latest()->paginate(2)
+            'comments'=>Comment::where('support_tickets_id',$this->ticketId)->
+                latest()->paginate(2)
         ]);
     }
 }
